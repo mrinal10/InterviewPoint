@@ -1,30 +1,35 @@
 package com.interviepoint.backend.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.interviewpoint.backend.bean.Credentials;
-import com.interviewpoint.backend.bean.Response;
+import com.interviewpoint.backend.service.LoginService;
+import com.interviewpoint.backend.util.UserType;
 
 @RestController
 @RequestMapping("/login")
 public class LoginController {
 
+	@Autowired
+	LoginService loginService;
+	
 	@PostMapping(consumes = "application/json", produces = "application/json", value = "/user")
-	public Response userLogin(@RequestBody Credentials userCredentials) {
-		return null;
+	public Boolean userLogin(@RequestBody Credentials userCredentials) {
+		return loginService.isValidUser(UserType.user, userCredentials);
 	}
 
 	@PostMapping(consumes = "application/json", produces = "application/json", value = "/interviewer")
-	public Response interviewerLogin(@RequestBody Credentials interviewerCredentials) {
-		return null;
+	public Boolean interviewerLogin(@RequestBody Credentials interviewerCredentials) {
+		return loginService.isValidUser(UserType.interviewer, interviewerCredentials);
 	}
 
 	@PostMapping(consumes = "application/json", produces = "application/json", value = "/admin")
-	public Response adminLogin(@RequestBody Credentials adminCredentials) {
-		return null;
+	public Boolean adminLogin(@RequestBody Credentials adminCredentials) {
+		return loginService.isValidUser(UserType.admin, adminCredentials);
 	}
 
 }

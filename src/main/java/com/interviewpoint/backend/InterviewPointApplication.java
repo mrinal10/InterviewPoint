@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"com.interviepoint.backend"})
+@ComponentScan(basePackages= {"com.interviewpoint"})
 public class InterviewPointApplication {
 
 	public static void main(String[] args) {
