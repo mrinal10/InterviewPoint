@@ -15,19 +15,27 @@ import com.interviewpoint.backend.util.UserType;
 public class LoginController {
 
 	@Autowired
-	LoginService loginService;
+	private LoginService loginService;
 	
-	@PostMapping(consumes = "application/json", produces = "application/json", value = "/user")
-	public Boolean userLogin(@RequestBody Credentials userCredentials) {
-		return loginService.isValidUser(UserType.user, userCredentials);
+	@PostMapping(consumes = "application/json", 
+				 produces = "application/json", 
+				 value = "/user")
+	public Boolean userLogin() {//@RequestBody Credentials userCredentials) {
+		//return loginService.isValidUser(UserType.user, userCredentials);
+		System.out.println("Hello");
+		return false;
 	}
 
-	@PostMapping(consumes = "application/json", produces = "application/json", value = "/interviewer")
+	@PostMapping(consumes = "application/json", 
+				 produces = "application/json", 
+				 value = "/interviewer")
 	public Boolean interviewerLogin(@RequestBody Credentials interviewerCredentials) {
 		return loginService.isValidUser(UserType.interviewer, interviewerCredentials);
 	}
 
-	@PostMapping(consumes = "application/json", produces = "application/json", value = "/admin")
+	@PostMapping(consumes = "application/json", 
+				 produces = "application/json", 
+				 value = "/admin")
 	public Boolean adminLogin(@RequestBody Credentials adminCredentials) {
 		return loginService.isValidUser(UserType.admin, adminCredentials);
 	}
